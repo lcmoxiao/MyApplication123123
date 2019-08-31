@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">My Application123123</string>
-    <string name="confirm">修改</string>
-    <string name="button">大大大</string>
-    <string name="textAD">MD</string>
+    <string name="app_name">TodayNews</string>
     <string name="plput">请输入</string>
-
+    <string name="welcome">欢迎</string>
+    <string name="skip">Skip</string>
 </resources>
