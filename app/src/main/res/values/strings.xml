@@ -4,4 +4,6 @@
     <string name="plput">请输入</string>
     <string name="welcome">欢迎</string>
     <string name="skip">Skip</string>
+    <string name="Shanghai">上海</string>
+    <string name="Hangzhou">杭州</string>
 </resources>

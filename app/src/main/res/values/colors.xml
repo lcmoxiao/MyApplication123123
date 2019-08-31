@@ -4,5 +4,7 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="colorVideoView">#FFFFFFFF</color>
-    <color name="color_30_black">#2B000000</color>
+    <color name="color_30_black">#B2000000</color>
+    <color name="color_30_purple">#BAE32DFF</color>
+    <color name="color_30_green">#BA5BFF2D</color>
 </resources>
