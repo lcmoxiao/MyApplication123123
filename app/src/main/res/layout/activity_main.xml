@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:id="@+id/LinearLayout1"
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -11,12 +11,14 @@
             android:layout_above="@+id/fl_main_home"
             >
 
-                <android.support.design.widget.FloatingActionButton
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fac_main_home"
                     android:layout_gravity="end|bottom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="40sp"
-                    android:layout_marginBottom="40sp" />
+                    android:layout_marginBottom="40sp"
+                    android:layout_marginRight="40sp" />
 
 
         </FrameLayout>
@@ -37,12 +39,14 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
                         <RadioButton
+                            android:id="@+id/LButton"
                             android:drawableTop="@drawable/seletor_main_top_shanhai"
                             android:text="@string/Shanghai"
                             style="@style/main_tab_rb_style"
 
                             />
                         <RadioButton
+                            android:id="@+id/RButton"
                             android:drawableTop="@drawable/seletor_main_top_hangzhou"
                             android:text="@string/Hangzhou"
                             style="@style/main_tab_rb_style"
