@@ -33,22 +33,45 @@
             android:layout_alignParentBottom="true"
                 >
                 <RadioGroup
+                    android:id="@+id/RG1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/color_30_black"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
                         <RadioButton
-                            android:id="@+id/LButton"
-                            android:drawableTop="@drawable/seletor_main_top_shanhai"
+                            android:id="@+id/SHButton"
+                            android:drawableTop="@drawable/selector_main_bottom_tab_shanghai"
                             android:text="@string/Shanghai"
                             style="@style/main_tab_rb_style"
 
                             />
                         <RadioButton
-                            android:id="@+id/RButton"
-                            android:drawableTop="@drawable/seletor_main_top_hangzhou"
+                            android:id="@+id/HZButton"
+                            android:drawableTop="@drawable/selector_main_bottom_tab_hangzhou"
                             android:text="@string/Hangzhou"
+                            style="@style/main_tab_rb_style"
+                            />
+                </RadioGroup>
+
+                <RadioGroup
+                    android:id="@+id/RG2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/color_30_black"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+                        <RadioButton
+                            android:id="@+id/BJButton"
+                            android:drawableTop="@drawable/selector_main_bottom_tab_beijing"
+                            android:text="@string/BeiJing"
+                            style="@style/main_tab_rb_style"
+
+                            />
+                        <RadioButton
+                            android:id="@+id/SZButton"
+                            android:drawableTop="@drawable/selector_main_bottom_tab_shenzhen"
+                            android:text="@string/ShenZhen"
                             style="@style/main_tab_rb_style"
                             />
                 </RadioGroup>

@@ -6,4 +6,7 @@
     <string name="skip">Skip</string>
     <string name="Shanghai">上海</string>
     <string name="Hangzhou">杭州</string>
+    <string name="BeiJing">北京</string>
+    <string name="ShenZhen">深圳</string>
+    <string name="miao">秒</string>
 </resources>
