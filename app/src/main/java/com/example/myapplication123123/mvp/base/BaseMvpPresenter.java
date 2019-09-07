@@ -8,6 +8,11 @@ import com.example.myapplication123123.mvp.presenter.LifeCircleMvpPresenter;
 
 public abstract class BaseMvpPresenter<T extends IMvpView>extends LifeCircleMvpPresenter<T> {
 
+    public BaseMvpPresenter(T view)
+    {
+        super(view);
+    }
+
 
     @Override
     protected T getEmptyView() {
@@ -65,4 +70,6 @@ public abstract class BaseMvpPresenter<T extends IMvpView>extends LifeCircleMvpP
     public void onSaveInstanceState(Bundle bundle) {
 
     }
+
+
 }

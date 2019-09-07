@@ -3,11 +3,13 @@ package com.example.myapplication123123.mvp;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.myapplication123123.main.IMainActivityContract;
+
 public interface ILifeCircle {
 
     void onCreate(Bundle savedInstanceState, Intent intent,Bundle getArguements);
 
-    void onActivityCreated(Bundle savedInstanceState, Intent intent,Bundle getArguements);
+    IMainActivityContract.IView onActivityCreated(Bundle savedInstanceState, Intent intent, Bundle getArguements);
 
     void onStart();
 

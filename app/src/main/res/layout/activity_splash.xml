@@ -3,7 +3,7 @@
     android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
- <com.example.myapplication123123.FullScreenVideoView
+ <com.example.myapplication123123.base.FullScreenVideoView
      android:id="@+id/videoV"
      style="@style/style_video_view" />
 

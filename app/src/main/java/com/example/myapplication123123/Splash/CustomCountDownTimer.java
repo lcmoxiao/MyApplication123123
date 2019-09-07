@@ -1,4 +1,4 @@
-package com.example.myapplication123123;
+package com.example.myapplication123123.Splash;
 
 
 import android.os.Handler;
