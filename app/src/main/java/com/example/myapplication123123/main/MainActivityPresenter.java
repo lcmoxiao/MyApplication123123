@@ -29,6 +29,8 @@ public class MainActivityPresenter extends BaseMvpPresenter<IMainActivityContrac
     @Override
     public void initHomeFragment() {
         mCurrentFragmentIndex = 0 ;
+        SHHZPosition = MainConstantTool.SHANGHAI;
+        BJSZPosition = MainConstantTool.BEIJING;
         replaceFragment(mCurrentFragmentIndex);
     }
 
@@ -61,19 +63,19 @@ public class MainActivityPresenter extends BaseMvpPresenter<IMainActivityContrac
         switch (mCurrentFragmentIndex) {
             case 0:
                 mCurrentCheckedId = R.id.SHButton;
-                SHHZPosition = MainConstantTool.BEIJING;
+                SHHZPosition = MainConstantTool.SHANGHAI;
                 break;
             case 1:
                 mCurrentCheckedId = R.id.HZButton;
                 SHHZPosition = MainConstantTool.HANGZHOU;
                 break;
             case 2:
-                mCurrentCheckedId = MainConstantTool.BEIJING;
-                BJSZPosition = 2;
+                mCurrentCheckedId = R.id.BJButton;
+                BJSZPosition = MainConstantTool.BEIJING;
                 break;
             case 3:
-                mCurrentCheckedId = MainConstantTool.SHENZHEN;
-                BJSZPosition = 3;
+                mCurrentCheckedId = R.id.SZButton;
+                BJSZPosition = MainConstantTool.SHENZHEN;
                 break;
         }
     }
