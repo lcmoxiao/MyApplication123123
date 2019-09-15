@@ -6,6 +6,8 @@ import com.example.myapplication123123.mvp.ILifeCircle;
 import com.example.myapplication123123.mvp.IMvpView;
 import com.example.myapplication123123.mvp.MvpControler;
 
+
+//
 public interface IMainActivityContract {
 
     interface IView extends IMvpView {
@@ -16,11 +18,9 @@ public interface IMainActivityContract {
 
         void hideFragment(Fragment mFragment);
 
-
     }
 
     interface  IPresenter extends ILifeCircle {
-
 
         int getSHHZPosition();
 

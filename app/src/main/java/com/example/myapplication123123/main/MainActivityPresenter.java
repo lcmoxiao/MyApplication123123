@@ -8,9 +8,10 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
 import com.example.myapplication123123.R;
+import com.example.myapplication123123.base.MainConstantTool;
 import com.example.myapplication123123.main.Fragment.BeiJingFragment;
 import com.example.myapplication123123.main.Fragment.HangZhouFragment;
-import com.example.myapplication123123.main.Fragment.ShangHaiFragment;
+import com.example.myapplication123123.main.Fragment.shanghai.ShangHaiFragment;
 import com.example.myapplication123123.main.Fragment.ShenZhenFragment;
 import com.example.myapplication123123.mvp.base.BaseMvpPresenter;
 

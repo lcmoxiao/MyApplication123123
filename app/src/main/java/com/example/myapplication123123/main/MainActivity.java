@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.myapplication123123.base.BaseActivity;
 import com.example.myapplication123123.R;
+import com.example.myapplication123123.base.MainConstantTool;
 import com.example.myapplication123123.base.ViewInject;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -67,10 +68,10 @@ public class MainActivity extends BaseActivity implements IMainActivityContract.
             isCHangingTopOrBottom = !isCHangingTopOrBottom;
             if (isCHangingTopOrBottom) {
                 changeAnime(RG1, RG2);
-                handleSHHZPosition();
+                handleBJSZPosition();
             } else {
                 changeAnime(RG2, RG1);
-                handleBJSZPosition();
+                handleSHHZPosition();
             }
         }
     }
@@ -94,7 +95,7 @@ public class MainActivity extends BaseActivity implements IMainActivityContract.
     }
 
     private void handleSHHZPosition() {
-        if(mPresenter.getSHHZPosition() == 0) {
+        if(mPresenter.getSHHZPosition() == MainConstantTool.SHANGHAI) {
             mPresenter.replaceFragment(MainConstantTool.SHANGHAI);
             SHButton.setChecked(true);
         }else{
@@ -104,7 +105,7 @@ public class MainActivity extends BaseActivity implements IMainActivityContract.
     }
 
     private void handleBJSZPosition() {
-        if(mPresenter.getBJSZPosition() == 0) {
+        if(mPresenter.getBJSZPosition() == MainConstantTool.BEIJING) {
             mPresenter.replaceFragment(MainConstantTool.BEIJING);
             BJButton.setChecked(true);
         }else{

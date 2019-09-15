@@ -5,5 +5,4 @@ import androidx.fragment.app.Fragment;
 public interface IMvpView {
     MvpControler getMvpControler();
 
-
 }

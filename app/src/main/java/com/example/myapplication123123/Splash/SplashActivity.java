@@ -21,7 +21,6 @@ import butterknife.BindView;
 @ViewInject(main_layout_id = R.layout.activity_splash)
 public class SplashActivity extends BaseActivity implements ISplashActiviytContract.IView {
 
-
     @BindView(R.id.videoV)
     FullScreenVideoView videoV;
     @BindView(R.id.Skip_tv)
@@ -32,7 +31,6 @@ public class SplashActivity extends BaseActivity implements ISplashActiviytContr
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
-
 
     //模板方法 设计模式
     @Override
