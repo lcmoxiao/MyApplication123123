@@ -8,6 +8,7 @@ import com.example.myapplication123123.mvp.view.LifeCircleMvpActivity;
 import butterknife.ButterKnife;
 
 
+//实现ViewInject注释，进行Activity的初始化
 public abstract class BaseActivity extends LifeCircleMvpActivity {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -18,6 +19,7 @@ public abstract class BaseActivity extends LifeCircleMvpActivity {
             int main_layout_id = annotation.main_layout_id();
             if(main_layout_id > 0)
             {
+                //Set the activity content from a layout resource
                 setContentView(main_layout_id);
                 bindView();
                 afterBindView();

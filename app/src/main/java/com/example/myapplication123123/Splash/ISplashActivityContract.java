@@ -4,13 +4,15 @@ import com.example.myapplication123123.mvp.ILifeCircle;
 import com.example.myapplication123123.mvp.IMvpView;
 import com.example.myapplication123123.mvp.MvpControler;
 
-public interface ISplashActiviytContract {
+//提供View和Presenter的接口
+public interface ISplashActivityContract {
 
+    //activity的接口
     interface IView extends IMvpView {
         void setSkipTv(String s);
-
     }
 
+    //逻辑业务的接口
     interface  IPresenter extends ILifeCircle {
         void setTimer();
     }

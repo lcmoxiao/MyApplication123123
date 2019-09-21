@@ -1,8 +1,9 @@
 package com.example.myapplication123123.mvp;
 
-import androidx.fragment.app.Fragment;
 
 public interface IMvpView {
+
+    //提供一个present状态控制器
     MvpControler getMvpControler();
 
 }

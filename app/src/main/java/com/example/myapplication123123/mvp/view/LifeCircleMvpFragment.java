@@ -4,25 +4,25 @@ package com.example.myapplication123123.mvp.view;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.myapplication123123.mvp.IMvpView;
 import com.example.myapplication123123.mvp.MvpControler;
 
+//最基层的Fragment
 public class LifeCircleMvpFragment extends Fragment implements IMvpView {
 
     private MvpControler mvpControler;
 
+    //绑定presenter
     @Override
     public MvpControler getMvpControler() {
         if(this.mvpControler == null )
             this.mvpControler = new MvpControler();
         return this.mvpControler;
     }
-
-
-
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -116,7 +116,7 @@ public class LifeCircleMvpFragment extends Fragment implements IMvpView {
     }
 
     @Override
-    public void onSaveInstanceState(Bundle savedInstanceState) {
+    public void onSaveInstanceState(@NonNull Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
         MvpControler mvpControler = this.getMvpControler();
         if(mvpControler != null)

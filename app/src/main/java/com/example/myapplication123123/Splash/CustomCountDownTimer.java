@@ -4,12 +4,22 @@ package com.example.myapplication123123.Splash;
 import android.os.Handler;
 
 public class CustomCountDownTimer implements Runnable{
+    //总倒计时时间
     private int time;
+    //当前剩余时间
     private int countDowntime;
-    private final ICountDownHandler Ihandler;
     private final Handler handler;
     private boolean isRun;
+    //handler外部操作接口
+    private final ICountDownHandler Ihandler;
 
+    CustomCountDownTimer(int time, ICountDownHandler Ihandler)
+    {
+        handler = new Handler();
+        this.time=time;
+        this.countDowntime=time;
+        this.Ihandler =Ihandler;
+    }
 
     //IOC数据回调
     public interface ICountDownHandler
@@ -18,24 +28,16 @@ public class CustomCountDownTimer implements Runnable{
         void onFinish();
     }
 
-
-
-    public  CustomCountDownTimer (int time ,ICountDownHandler Ihandler)
-    {
-        handler = new Handler();
-        this.countDowntime=time;
-        this.time=time;
-        this.Ihandler =Ihandler;
-    }
-
     @Override
     public void run() {
         if(isRun)
         {
+            //存在Ihandler，则Ticker
             if(Ihandler != null)
             {
                 Ihandler.onTicker(countDowntime);
             }
+            //时间归0，存在Ihandler，则onFinish
             if(countDowntime==0)
             {
                 if(Ihandler != null)
@@ -44,29 +46,25 @@ public class CustomCountDownTimer implements Runnable{
                     Ihandler.onFinish();
                 }
             }
+            //时间未0，则剩余时间--，延迟一秒继续运行
             else {
-                countDowntime = time--;
+                countDowntime--;
                 handler.postDelayed(this,1000);
             }
         }
     }
 
-    public void start()
+    //进入线程
+    void start()
     {
         isRun = true;
         handler.post(this);
     }
-
-    public void cancel()
+    //移除线程
+    void cancel()
     {
         isRun = false;
         handler.removeCallbacks(this);
     }
-
-
-
-
-
-
 
 }

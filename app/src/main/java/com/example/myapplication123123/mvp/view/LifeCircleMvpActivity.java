@@ -3,7 +3,6 @@ package com.example.myapplication123123.mvp.view;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,11 +10,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.myapplication123123.mvp.IMvpView;
 import com.example.myapplication123123.mvp.MvpControler;
 
+//最基层的Activity
 public class LifeCircleMvpActivity extends AppCompatActivity implements IMvpView {
 
     private MvpControler mvpControler;
 
-    @Override
+     @Override
     public MvpControler getMvpControler() {
         if(this.mvpControler == null )
             this.mvpControler = new MvpControler();

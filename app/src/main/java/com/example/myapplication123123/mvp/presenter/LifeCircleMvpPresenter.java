@@ -6,17 +6,18 @@ import com.example.myapplication123123.mvp.MvpControler;
 
 import java.lang.ref.WeakReference;
 
+
+//最基层的Presenter,对View进行弱引用
 public abstract class LifeCircleMvpPresenter<T extends IMvpView> implements ILifeCircle {
     protected WeakReference<T> weakReference;
+    protected MvpControler mvpControler;
 
     public LifeCircleMvpPresenter(IMvpView iMvpView){
         super();
         attachView(iMvpView);
-        MvpControler mvpControler = iMvpView.getMvpControler();
+        mvpControler = iMvpView.getMvpControler();
         mvpControler.savePresenter(this);
     }
-
-
 
     protected T getView()
     {
@@ -28,8 +29,6 @@ public abstract class LifeCircleMvpPresenter<T extends IMvpView> implements ILif
     }
 
     protected abstract T getEmptyView();
-
-
 
     //对V层进行弱引用
     @Override

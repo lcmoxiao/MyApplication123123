@@ -19,10 +19,10 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+
+//继承BaseActivity实现注释
 @ViewInject(main_layout_id = R.layout.activity_main)
 public class MainActivity extends BaseActivity implements IMainActivityContract.IView{
-
-    IMainActivityContract.IPresenter mPresenter = new MainActivityPresenter(this);
 
     @BindView(R.id.fac_main_home)
     FloatingActionButton facMainHome;
@@ -40,33 +40,30 @@ public class MainActivity extends BaseActivity implements IMainActivityContract.
     RadioGroup RG1;
     @BindView(R.id.RG2)
     RadioGroup RG2;
-    private boolean isCHangingTopOrBottom;
-
+    private boolean isShowRG1;
+    IMainActivityContract.IPresenter mPresenter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
-
+    //初始化Presenter，fragment，设置RG2不可见，默认按钮选定
     @Override
     public void afterBindView() {
-        initHomeFragment();
-        changeAnime(RG2,RG1);
+        mPresenter = new MainActivityPresenter(this);
+        mPresenter.initHomeFragment();
+        RG2.setVisibility(View.GONE);
         SHButton.setChecked(true);
         BJButton.setChecked(true);
     }
 
-    // 初始化Fragment
-    private void initHomeFragment() {
-        mPresenter.initHomeFragment();
-    }
-
+    //设置FloatingActionButton的点击效果：
     @OnClick(R.id.fac_main_home)
     public void onClick(View view) {
         if (view.getId() == R.id.fac_main_home) {
-            isCHangingTopOrBottom = !isCHangingTopOrBottom;
-            if (isCHangingTopOrBottom) {
+            isShowRG1 = !isShowRG1;
+            if (isShowRG1) {
                 changeAnime(RG1, RG2);
                 handleBJSZPosition();
             } else {
@@ -76,6 +73,7 @@ public class MainActivity extends BaseActivity implements IMainActivityContract.
         }
     }
 
+    //设置RadioButton的点击效果：切换fragment。
     @OnClick({R.id.SHButton, R.id.HZButton, R.id.BJButton, R.id.SZButton})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -114,6 +112,7 @@ public class MainActivity extends BaseActivity implements IMainActivityContract.
         }
     }
 
+    //RadioGroup切换动画设置
     private void changeAnime(RadioGroup gone, RadioGroup show) {
         gone.clearAnimation();
         Animation animationGone = AnimationUtils.loadAnimation(this, R.anim.main_tab_hide);

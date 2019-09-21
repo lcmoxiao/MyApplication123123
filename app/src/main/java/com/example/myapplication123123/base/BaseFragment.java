@@ -6,32 +6,36 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.myapplication123123.mvp.view.LifeCircleMvpFragment;
 
 import butterknife.ButterKnife;
 
+
+//实现ViewInject注释，进行Fragment的初始化,并传输Context
 public abstract class BaseFragment extends LifeCircleMvpFragment {
 
-
+    //Interface to global information about an application environment.
     protected Context mContext;
 
     @Override
     public void onAttach(Context context) {
+        //Called when a fragment is first attached to its context.
         super.onAttach(context);
         this.mContext = context;
     }
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View mView = null;
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View mView;
         ViewInject annotation = this.getClass().getAnnotation(ViewInject.class);
         if (annotation != null) {
-            int mainlayoutid = annotation.main_layout_id();
-            if (mainlayoutid > 0) {
-                mView = initFragmentView(inflater,mainlayoutid);
+            int main_layout_id = annotation.main_layout_id();
+            if (main_layout_id > 0) {
+                mView = initFragmentView(inflater,main_layout_id);
                 bindView(mView);
                 afterBindView();
             } else {
@@ -43,12 +47,11 @@ public abstract class BaseFragment extends LifeCircleMvpFragment {
         return mView;
     }
 
-    private View initFragmentView(LayoutInflater inflater,int mainlayoutid) {
-        return inflater.inflate(mainlayoutid, null);
+    private View initFragmentView(LayoutInflater inflater,int main_layout_id) {
+        //Inflate a new view hierarchy from the specified xml resource.
+        return inflater.inflate(main_layout_id, null);
     }
 
-
-    // 模板方法 设计模式
     public abstract void afterBindView();
 
     // View 的依赖注入绑定

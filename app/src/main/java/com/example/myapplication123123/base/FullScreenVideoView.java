@@ -4,6 +4,8 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.VideoView;
 
+
+//复写的一个全屏VideoView
 public class FullScreenVideoView extends VideoView {
 
     public FullScreenVideoView(Context context) {

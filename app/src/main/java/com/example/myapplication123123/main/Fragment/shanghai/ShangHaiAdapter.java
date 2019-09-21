@@ -21,14 +21,15 @@ public class ShangHaiAdapter extends RecyclerView.Adapter {
     // 保存主页Context
     private final Context mContext;
 
-    //用于初始化主页Context和Adapter要展示的数据
+
+    //初始化主页Context和Adapter的数据
     ShangHaiAdapter(Context context, ArrayList<ShangHaiBean> data)
     {
         mContext = context;
         mData = data;
     }
 
-    //onCreateViewHolder（）方法，负责承载每个子项的布局。
+    //Called when RecyclerView needs a new RecyclerView.ViewHolder of the given type to represent an item.
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -40,15 +41,31 @@ public class ShangHaiAdapter extends RecyclerView.Adapter {
             //3. 如果root不为null，attachToRoot设为false，则会将布局文件最外层的所有layout属性进行设置，当该view被添加到父view当中时，这些layout属性会自动生效。
             //4. 在不设置attachToRoot参数的情况下，如果root不为null，attachToRoot参数默认为true。
             //Here is the third one
-            View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_shanghai_fragment,parent,false);
-            //return a ShanghaiViewHolder bound to item_shanghai_fragment
-            return new ShanghaiViewHolder(inflate);
+            View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_shanghai_fragment_vertical,parent,false);
+            //return a ShanghaiViewVerticalHolder bound to item_shanghai_fragment_VERTICAL
+            return new ShanghaiViewVerticalHolder(inflate);
         }else if(viewType == ShangHaiBean.IShanghaiItem.HORIZONTAL){
-            View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_shanghai_fragment_rv,parent,false);
-            //return a ShanghaiViewHolder bound to item_shanghai_fragment_rv
-            return new ShanghaiViewrvHolder(inflate);
+            View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_shanghai_fragment_horizontal,parent,false);
+            //return a ShanghaiViewVerticalHolder bound to item_shanghai_fragment_horizontal
+            return new ShanghaiViewHorizontalHolder(inflate);
         }
         return null;
+    }
+
+    //Called by RecyclerView to display the data at the specified position.
+    @Override
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        ShangHaiBean shangHaiBean = mData.get(position);
+        if(holder instanceof ShanghaiViewHorizontalHolder) {
+            //初始化水平方向recycler的新布局，并展示数据
+            ((ShanghaiViewHorizontalHolder) holder).mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext,LinearLayoutManager.HORIZONTAL,false));
+            ((ShanghaiViewHorizontalHolder) holder).mRecyclerView.setAdapter(new ShangHaiAdapter(mContext, shangHaiBean.getData()));
+        }
+        else if(holder instanceof ShanghaiViewVerticalHolder){
+            //垂直方向单项展示数据：文字和图片
+            ((ShanghaiViewVerticalHolder) holder).mTv.setText(shangHaiBean.getmDec());
+            ((ShanghaiViewVerticalHolder) holder).mIv.setVisibility(shangHaiBean.isShowImg()?View.VISIBLE:View.GONE);
+        }
     }
 
     //获取RecycleView的方向
@@ -63,26 +80,11 @@ public class ShangHaiAdapter extends RecyclerView.Adapter {
         return mData.size();
     }
 
-
-    //onBindViewHolder()方法，负责将每个子项holder绑定数据。
-    @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        ShangHaiBean shangHaiBean = mData.get(position);
-        if(holder instanceof ShanghaiViewrvHolder) {
-            ((ShanghaiViewrvHolder) holder).mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext,LinearLayoutManager.HORIZONTAL,false));
-            ((ShanghaiViewrvHolder) holder).mRecyclerView.setAdapter(new ShangHaiAdapter(mContext, shangHaiBean.getData()));
-        }
-        else if(holder instanceof ShanghaiViewHolder){
-            ((ShanghaiViewHolder) holder).mTv.setText(shangHaiBean.getmDec());
-            ((ShanghaiViewHolder) holder).mIv.setVisibility(shangHaiBean.isShowImg()?View.VISIBLE:View.GONE);
-        }
-
-    }
-
-    public class ShanghaiViewHolder extends RecyclerView.ViewHolder {
+    //垂直方向的条目内容：文字，图片
+    public class ShanghaiViewVerticalHolder extends RecyclerView.ViewHolder {
         TextView mTv;
         ImageView mIv;
-        ShanghaiViewHolder(@NonNull View itemView) {
+        ShanghaiViewVerticalHolder(@NonNull View itemView) {
             super(itemView);
             mTv = itemView.findViewById(R.id.item_shanghai);
             mIv = itemView.findViewById(R.id.shanghai_img);
@@ -90,11 +92,12 @@ public class ShangHaiAdapter extends RecyclerView.Adapter {
         }
     }
 
-    public class ShanghaiViewrvHolder extends RecyclerView.ViewHolder {
+    //水平方向的条目内容：横向RecyclerView
+    public class ShanghaiViewHorizontalHolder extends RecyclerView.ViewHolder {
         RecyclerView mRecyclerView;
-        ShanghaiViewrvHolder(@NonNull View itemView) {
+        ShanghaiViewHorizontalHolder(@NonNull View itemView) {
             super(itemView);
-            mRecyclerView = itemView.findViewById(R.id.item_shanghai_rv);
+            mRecyclerView = itemView.findViewById(R.id.item_shanghai_horizontal);
         }
     }
 }

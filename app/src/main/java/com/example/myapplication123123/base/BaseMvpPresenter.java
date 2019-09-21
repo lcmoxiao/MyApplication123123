@@ -1,4 +1,4 @@
-package com.example.myapplication123123.mvp.base;
+package com.example.myapplication123123.base;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +13,6 @@ public abstract class BaseMvpPresenter<T extends IMvpView>extends LifeCircleMvpP
         super(view);
     }
 
-
     @Override
     protected T getEmptyView() {
         return null;
@@ -23,8 +22,6 @@ public abstract class BaseMvpPresenter<T extends IMvpView>extends LifeCircleMvpP
     public void onCreate(Bundle savedInstanceState, Intent intent, Bundle getArguements) {
 
     }
-
-
 
     @Override
     public void onStart() {

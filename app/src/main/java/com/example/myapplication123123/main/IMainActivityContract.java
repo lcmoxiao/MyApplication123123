@@ -7,9 +7,10 @@ import com.example.myapplication123123.mvp.IMvpView;
 import com.example.myapplication123123.mvp.MvpControler;
 
 
-//
+//Activity规范化接口
 public interface IMainActivityContract {
 
+    //继承了MvpControler
     interface IView extends IMvpView {
 
         void showFragment(Fragment mFragment);
@@ -20,19 +21,20 @@ public interface IMainActivityContract {
 
     }
 
+    //继承了一大堆Activity的生命周期函数
     interface  IPresenter extends ILifeCircle {
 
         int getSHHZPosition();
 
         int getBJSZPosition();
 
-        int getCurrentCheckedId();
+        void replaceFragment(int mCurrentFragmentIndex);
 
         void initHomeFragment();
 
-        int getCurrentCheckedIndex();
+        int getCurrentCheckedId();
 
-        void replaceFragment(int mCurrentFragmentIndex);
+        int getCurrentCheckedIndex();
 
     }
 

@@ -1,52 +1,52 @@
 package com.example.myapplication123123.main;
 
-
-
 import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
-
 import com.example.myapplication123123.R;
 import com.example.myapplication123123.base.MainConstantTool;
 import com.example.myapplication123123.main.Fragment.BeiJingFragment;
 import com.example.myapplication123123.main.Fragment.HangZhouFragment;
 import com.example.myapplication123123.main.Fragment.shanghai.ShangHaiFragment;
 import com.example.myapplication123123.main.Fragment.ShenZhenFragment;
-import com.example.myapplication123123.mvp.base.BaseMvpPresenter;
+import com.example.myapplication123123.base.BaseMvpPresenter;
 
+
+//包含对Fragment，Activity绑定的Presenter
 public class MainActivityPresenter extends BaseMvpPresenter<IMainActivityContract.IView> implements  IMainActivityContract.IPresenter{
 
-    private int mCurrentFragmentIndex;
     private Fragment[] mFragments = new Fragment[4];
+    //当前显示的Fragment的角标
+    private int mCurrentFragmentIndex;
+    //当前显示的Button的ID
     private int mCurrentCheckedId;
     private int SHHZPosition;
     private int BJSZPosition;
 
-    public MainActivityPresenter(IMainActivityContract.IView view) {
+    //对View层弱绑定
+    MainActivityPresenter(IMainActivityContract.IView view) {
         super(view);
     }
 
+    //初始化Fragment
     @Override
     public void initHomeFragment() {
+        //初始化角标为SHANGHAI 0
         mCurrentFragmentIndex = 0 ;
+        //优先显示上海和杭州
         SHHZPosition = MainConstantTool.SHANGHAI;
         BJSZPosition = MainConstantTool.BEIJING;
+        //切换至上海Fragment
         replaceFragment(mCurrentFragmentIndex);
-    }
-
-    @Override
-    public int getCurrentCheckedId() {
-        return mCurrentCheckedId;
     }
 
     //切换Fragment的方法
     @Override
     public void replaceFragment(int mCurrentFragmentIndex) {
-
+        //隐藏所有已存在的fragment
         for (Fragment fragment:mFragments)
             if (fragment != null) { hideFragment(fragment); }
-
+        //显示已初始化的fragment，或者初始化fragment并显示，之后记录当前角标
         Fragment mFragment = mFragments[mCurrentFragmentIndex];
         if (mFragment != null) {
             addAndShowFragment(mFragment);
@@ -58,7 +58,7 @@ public class MainActivityPresenter extends BaseMvpPresenter<IMainActivityContrac
 
     }
 
-    // 记录当前 角标
+    // 记录当前 角标，BUTTON的ID，以及用于面板切换的Position记录
     private void setCurChecked(int mCurrentFragmentIndex) {
         this.mCurrentFragmentIndex = mCurrentFragmentIndex;
         switch (mCurrentFragmentIndex) {
@@ -80,23 +80,7 @@ public class MainActivityPresenter extends BaseMvpPresenter<IMainActivityContrac
                 break;
         }
     }
-
-    @Override
-    public int getCurrentCheckedIndex() {
-        return mCurrentFragmentIndex;
-    }
-
-    @Override
-    public int getSHHZPosition() {
-        return SHHZPosition;
-    }
-
-    @Override
-    public int getBJSZPosition() {
-        return BJSZPosition;
-    }
-
-    //创建 当前 Fragment
+    //创建 指定角标的 Fragment
     private void newCurrentFragment(int mCurrentFragmentIndex) {
         Fragment fragment = null;
         switch (mCurrentFragmentIndex) {
@@ -133,6 +117,25 @@ public class MainActivityPresenter extends BaseMvpPresenter<IMainActivityContrac
         }
     }
 
+    @Override
+    public int getCurrentCheckedId() {
+        return mCurrentCheckedId;
+    }
+
+    @Override
+    public int getCurrentCheckedIndex() {
+        return mCurrentFragmentIndex;
+    }
+
+    @Override
+    public int getSHHZPosition() {
+        return SHHZPosition;
+    }
+
+    @Override
+    public int getBJSZPosition() {
+        return BJSZPosition;
+    }
 
     @Override
     public IMainActivityContract.IView onActivityCreated(Bundle savedInstanceState, Intent intent, Bundle getArguements) {

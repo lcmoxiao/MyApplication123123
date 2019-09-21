@@ -29,11 +29,17 @@ public class ShangHaiFragment extends BaseFragment {
     @BindView(R.id.mRecycleView)
     RecyclerView mRecycleView;
 
+    @Override
+    public void afterBindView() {
+        initRecycleView();
+        initListen();
+    }
+
     //初始化界面
     private void initRecycleView() {
-        //设置主页中的RecycleView的（垂直）格式
+        //设置主页中的RecycleView的格式
         mRecycleView.setLayoutManager(new LinearLayoutManager(mContext));
-        //设置Adapter——将主页Context和ShangHaiDataManager的预留界面传入Adapter
+        //设置Adapter将主页Context和ShangHaiDataManager的预留界面传入Adapter
         mRecycleView.setAdapter(new ShangHaiAdapter(mContext, ShangHaiDataManager.getData()));
     }
 
@@ -49,10 +55,6 @@ public class ShangHaiFragment extends BaseFragment {
         });
     }
 
-    @Override
-    public void afterBindView() {
-        initRecycleView();
-        initListen();
-    }
+
 
 }

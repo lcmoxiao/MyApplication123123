@@ -3,7 +3,7 @@ package com.example.myapplication123123.main.Fragment.shanghai;
 import java.util.ArrayList;
 
 //建立可重复使用的套件ShangHaiBean
-public class ShangHaiBean {
+class ShangHaiBean {
     //用于RecycleView方向的属性
     private int mItemType = IShanghaiItem.VERTICAL;
     //用于RecycleView是否显示图片
@@ -13,38 +13,38 @@ public class ShangHaiBean {
     //用于保存ShangHaiBean的集合
     private ArrayList<ShangHaiBean>data;
 
-    public int getmItemType() {
+    int getmItemType() {
         return mItemType;
     }
 
-    public ShangHaiBean setmItemType(int mItemType) {
+    ShangHaiBean setmItemType(int mItemType) {
         this.mItemType = mItemType;
         return this;
     }
 
-    public String getmDec() {
+    String getmDec() {
         return mDec;
     }
 
-    public ShangHaiBean setmDec(String mDec) {
+    ShangHaiBean setmDec(String mDec) {
         this.mDec = mDec;
         return this;
     }
 
-    public boolean isShowImg() {
+    boolean isShowImg() {
         return isShowImg;
     }
 
-    public ShangHaiBean setShowImg(boolean isshowImg) {
-        this.isShowImg = isshowImg;
+    ShangHaiBean setShowImg(boolean isShowImg) {
+        this.isShowImg = isShowImg;
         return this;
     }
 
-    public ArrayList<ShangHaiBean> getData() {
+    ArrayList<ShangHaiBean> getData() {
         return data;
     }
 
-    public ShangHaiBean setData(ArrayList<ShangHaiBean> data) {
+    ShangHaiBean setData(ArrayList<ShangHaiBean> data) {
         this.data = data;
         return this;
     }

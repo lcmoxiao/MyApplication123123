@@ -6,7 +6,7 @@ public class ShangHaiDataManager {
 
     private static ArrayList<ShangHaiBean> getVerView(){
         ArrayList<ShangHaiBean> data=new ArrayList<>();
-        for(int i = 0 ; i<6;i++)
+        for(int i = 0 ; i<3;i++)
         {
             data.add((new ShangHaiBean().setmDec("上海欢迎你").setShowImg(true)));
         }
@@ -15,7 +15,7 @@ public class ShangHaiDataManager {
 
     private static ArrayList<ShangHaiBean> getHorView(){
         ArrayList<ShangHaiBean> data=new ArrayList<>();
-        for(int i = 0 ; i<6;i++)
+        for(int i = 0 ; i<3;i++)
         {
             data.add((new ShangHaiBean().setmDec("上海是魔都").setShowImg(false)));
         }
@@ -26,10 +26,11 @@ public class ShangHaiDataManager {
     static ArrayList<ShangHaiBean> getData()
     {
         ArrayList<ShangHaiBean> data=new ArrayList<>();
-        data.addAll(getVerView());
         data.add(new ShangHaiBean().setData(getHorView()).setmItemType(ShangHaiBean.IShanghaiItem.HORIZONTAL));
         data.addAll(getVerView());
         data.add(new ShangHaiBean().setData(getHorView()).setmItemType(ShangHaiBean.IShanghaiItem.HORIZONTAL));
+        data.addAll(getVerView());
+
         return data;
     }
 
