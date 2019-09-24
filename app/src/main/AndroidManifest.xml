@@ -23,6 +23,6 @@
         </activity>
 
         <activity android:name=".main.MainActivity" />
-
+        <activity android:name=".main.Fragment.shanghai.view.ShangHaiDetailActivity" />
     </application>
 </manifest>

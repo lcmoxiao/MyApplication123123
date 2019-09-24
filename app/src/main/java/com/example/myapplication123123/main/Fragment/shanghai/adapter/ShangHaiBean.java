@@ -1,4 +1,4 @@
-package com.example.myapplication123123.main.Fragment.shanghai;
+package com.example.myapplication123123.main.Fragment.shanghai.adapter;
 
 import java.util.ArrayList;
 

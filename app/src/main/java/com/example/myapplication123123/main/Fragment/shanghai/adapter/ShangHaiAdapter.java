@@ -1,6 +1,6 @@
-package com.example.myapplication123123.main.Fragment.shanghai;
+package com.example.myapplication123123.main.Fragment.shanghai.adapter;
 
-import android.content.Context;
+import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication123123.R;
+import com.example.myapplication123123.main.Fragment.shanghai.view.ShangHaiDetailActivity;
+
 import java.util.ArrayList;
 
 
@@ -19,14 +21,18 @@ public class ShangHaiAdapter extends RecyclerView.Adapter {
     //借ShangHaiBean来进行数据管理
     private final ArrayList<ShangHaiBean> mData;
     // 保存主页Context
-    private final Context mContext;
+    private final Activity mContext;
+    private final boolean misHORIZONTAL;
+    private final RecyclerView.RecycledViewPool recycledViewPool;
 
 
     //初始化主页Context和Adapter的数据
-    ShangHaiAdapter(Context context, ArrayList<ShangHaiBean> data)
+    public ShangHaiAdapter(Activity context, ArrayList<ShangHaiBean> data, boolean isHORIZONTAL)
     {
+       recycledViewPool = new  RecyclerView.RecycledViewPool();
         mContext = context;
         mData = data;
+        misHORIZONTAL = isHORIZONTAL;
     }
 
     //Called when RecyclerView needs a new RecyclerView.ViewHolder of the given type to represent an item.
@@ -57,14 +63,14 @@ public class ShangHaiAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         ShangHaiBean shangHaiBean = mData.get(position);
         if(holder instanceof ShanghaiViewHorizontalHolder) {
-            //初始化水平方向recycler的新布局，并展示数据
-            ((ShanghaiViewHorizontalHolder) holder).mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext,LinearLayoutManager.HORIZONTAL,false));
-            ((ShanghaiViewHorizontalHolder) holder).mRecyclerView.setAdapter(new ShangHaiAdapter(mContext, shangHaiBean.getData()));
+            //绑定数据
+            ((ShanghaiViewHorizontalHolder) holder).mRecyclerView.setAdapter(new ShangHaiAdapter(mContext, shangHaiBean.getData(),true));
         }
         else if(holder instanceof ShanghaiViewVerticalHolder){
             //垂直方向单项展示数据：文字和图片
             ((ShanghaiViewVerticalHolder) holder).mTv.setText(shangHaiBean.getmDec());
             ((ShanghaiViewVerticalHolder) holder).mIv.setVisibility(shangHaiBean.isShowImg()?View.VISIBLE:View.GONE);
+            ((ShanghaiViewVerticalHolder) holder).itemView.setTag(position);
         }
     }
 
@@ -88,7 +94,12 @@ public class ShangHaiAdapter extends RecyclerView.Adapter {
             super(itemView);
             mTv = itemView.findViewById(R.id.item_shanghai);
             mIv = itemView.findViewById(R.id.shanghai_img);
-
+            this.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ShangHaiDetailActivity.start_5_0(mContext,mIv);
+                }
+            });
         }
     }
 
@@ -98,6 +109,10 @@ public class ShangHaiAdapter extends RecyclerView.Adapter {
         ShanghaiViewHorizontalHolder(@NonNull View itemView) {
             super(itemView);
             mRecyclerView = itemView.findViewById(R.id.item_shanghai_horizontal);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext,LinearLayoutManager.HORIZONTAL,false);
+            linearLayoutManager.setRecycleChildrenOnDetach(true);
+            mRecyclerView.setLayoutManager(linearLayoutManager);
+            mRecyclerView.setRecycledViewPool(recycledViewPool);
         }
     }
 }

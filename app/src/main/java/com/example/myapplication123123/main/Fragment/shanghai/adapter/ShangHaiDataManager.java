@@ -1,4 +1,6 @@
-package com.example.myapplication123123.main.Fragment.shanghai;
+package com.example.myapplication123123.main.Fragment.shanghai.adapter;
+
+import com.example.myapplication123123.main.Fragment.shanghai.adapter.ShangHaiBean;
 
 import java.util.ArrayList;
 
@@ -23,7 +25,7 @@ public class ShangHaiDataManager {
     }
 
     //综合界面
-    static ArrayList<ShangHaiBean> getData()
+    public static ArrayList<ShangHaiBean> getData()
     {
         ArrayList<ShangHaiBean> data=new ArrayList<>();
         data.add(new ShangHaiBean().setData(getHorView()).setmItemType(ShangHaiBean.IShanghaiItem.HORIZONTAL));

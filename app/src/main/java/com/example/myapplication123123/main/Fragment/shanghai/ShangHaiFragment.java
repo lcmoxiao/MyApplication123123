@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapplication123123.R;
 import com.example.myapplication123123.base.BaseFragment;
 import com.example.myapplication123123.base.ViewInject;
+import com.example.myapplication123123.main.Fragment.shanghai.adapter.ShangHaiAdapter;
+import com.example.myapplication123123.main.Fragment.shanghai.adapter.ShangHaiDataManager;
 import com.google.android.material.appbar.AppBarLayout;
 
 import butterknife.BindView;
@@ -40,7 +42,7 @@ public class ShangHaiFragment extends BaseFragment {
         //设置主页中的RecycleView的格式
         mRecycleView.setLayoutManager(new LinearLayoutManager(mContext));
         //设置Adapter将主页Context和ShangHaiDataManager的预留界面传入Adapter
-        mRecycleView.setAdapter(new ShangHaiAdapter(mContext, ShangHaiDataManager.getData()));
+        mRecycleView.setAdapter(new ShangHaiAdapter(getActivity(), ShangHaiDataManager.getData(),false));
     }
 
     //设置滑动welcome的可见性
